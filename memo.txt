@@ -1,0 +1,128 @@
+//시작폴더 => WEBCONTENT의 login.jsp파일
+
+drop sequence rmseq;
+create sequence rmseq
+increment by 1
+start with 1
+minvalue 1
+maxvalue 10000
+nocache;
+
+drop table roommember purge;
+create table roommember(
+	no number primary key,
+	name varchar2(30) not null,
+	id varchar2(30) not null,
+	password varchar2(12),
+	gender varchar2(12),
+	age varchar2(12),
+	hp1 varchar2(10),
+	hp2 varchar2(10),
+	hp3 varchar2(20),
+	email varchar2(20),
+	country varchar2(20),
+	pref varchar2(20)
+);
+
+insert into roommember(no, name, id, password, age, pref)
+values(rmseq.nextval, '펭귄', 'penguinabc', '1234','25','Cheerful');
+
+insert into roommember(no, name, id, password, age)
+values(rmseq.nextval, 'charlie', 'charlie123', '1234','3');
+
+insert into roommember(no, name, id, password, age)
+values(rmseq.nextval, 'thimothee', 'thimothee123', '1234','5');
+
+insert into roommember(no, name, id, password, gender, age, hp1, hp2, hp3, email, country, pref)
+values(rmseq.nextval, '강아지','puppy','1234','female','1','010','1234','2345','hi@gmail.com','Korea','Beautiful');
+
+
+
+
+commit;
+
+col name for a12
+col id for a15
+col password for a10
+col age for a10
+
+select no, name, id, password, age from roommember;
+
+
+
+
+
+
+
+
+
+drop sequence rcseq;
+
+create sequence rcseq
+increment by 1
+start with 1
+minvalue 1
+maxvalue 10000
+nocache;
+
+create table roomcat(
+	catno number primary key,
+	catname varchar2(50) not null
+);
+
+
+
+
+drop sequence rpseq;
+
+create sequence rpseq
+increment by 1
+start with 1
+minvalue 1
+maxvalue 10000
+nocache;
+
+drop table roomproduct purge;
+create table roomproduct(
+	pno int not null primary key,
+	pname varchar2(50) not null,
+	pcategory varchar2(30) not null,
+	pcompany 	varchar2(50),
+	pimage   		varchar2(30),
+	pqty   int default 0,
+	price   		int default 0,
+	pcontents 	varchar2(300),
+	pref varchar2(30),
+	point   		int default 0
+);
+
+
+col pname for a12
+col pcompany for a12
+col pimage for a12
+col pcontents for a12
+select * from roomproduct  ;
+
+
+
+drop sequence roseq;
+
+create sequence roseq
+increment by 1
+start with 1
+minvalue 1
+maxvalue 10000
+nocache;
+
+
+drop table roomorders purge;
+
+create table roomorders(
+	orderId number,
+	memno number,
+	pno number,
+	qty number,
+	amount number
+);
+
+commit;
